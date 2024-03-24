@@ -22,4 +22,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    if not field.has_food:
+        field.gen_food()
+    snake.move_forward(field)
     draw(screen)
+    pygame.time.delay(500)
