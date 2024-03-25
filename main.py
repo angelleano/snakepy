@@ -19,6 +19,8 @@ def draw(display):
 
 running = True
 while running:
+    if not field.has_food:
+        field.gen_food()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -36,8 +38,13 @@ while running:
             if direction == "right" and direction != snake.opposite():
                 snake.direction = "right"
                 break
-    if not field.has_food:
+    
+    if snake.head == field.food:
+        snake.grow(field)
+        field.food.food = False
         field.gen_food()
-    snake.move_forward(field)
+    else:
+        snake.move_forward(field)
+    
     draw(screen)
-    pygame.time.delay(500)
+    pygame.time.delay(250)

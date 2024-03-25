@@ -44,3 +44,18 @@ class Snake():
         self.body.pop(0)
         self.tail = self.body[0]
         self.head = self.body[-1]
+    
+    def grow(self, field):
+        last_x = self.head.x
+        last_y = self.head.y
+        match self.direction:
+            case "up":
+                new_block = field.get_block_by_pos(last_x, last_y - 1)
+            case "down":
+                new_block = field.get_block_by_pos(last_x, last_y + 1)
+            case "left":
+                new_block = field.get_block_by_pos(last_x - 1, last_y)
+            case "right":
+                new_block = field.get_block_by_pos(last_x + 1, last_y)
+        self.body.append(new_block)
+        self.head = self.body[-1]
