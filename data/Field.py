@@ -12,6 +12,7 @@ class Field():
         self.block_height = height // 25
         self.blocks = self.gen_blocks()
         self.has_food = False
+        self.food = None
 
     def gen_blocks(self):
         blocks = []
@@ -28,6 +29,7 @@ class Field():
         new_pos = random.randrange(0, 625)
         self.blocks[new_pos].food = True
         self.has_food = True
+        self.food = self.blocks[new_pos]
         return self.blocks[new_pos]
 
     def draw(self, display):

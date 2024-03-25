@@ -22,6 +22,20 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.KEYDOWN:
+            direction = pygame.key.name(event.key)
+            if direction == "up" and direction != snake.opposite():
+                snake.direction = "up"
+                break
+            if direction == "down" and direction != snake.opposite():
+                snake.direction = "down"
+                break
+            if direction == "left" and direction != snake.opposite():
+                snake.direction = "left"
+                break
+            if direction == "right" and direction != snake.opposite():
+                snake.direction = "right"
+                break
     if not field.has_food:
         field.gen_food()
     snake.move_forward(field)
