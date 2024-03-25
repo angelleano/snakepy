@@ -32,18 +32,31 @@ class Snake():
         last_y = self.head.y
         match self.direction:
             case "up":
+                if last_y == 0:
+                    return False
                 new_block = field.get_block_by_pos(last_x, last_y - 1)
             case "down":
+                if last_y == 24:
+                    return False
                 new_block = field.get_block_by_pos(last_x, last_y + 1)
             case "left":
+                if last_x == 0:
+                    return False
                 new_block = field.get_block_by_pos(last_x - 1, last_y)
             case "right":
+                if last_x == 24:
+                    return False
                 new_block = field.get_block_by_pos(last_x + 1, last_y)
+        
+        if new_block.snake:
+            return False
+        
         self.body.append(new_block)
         self.body[0].snake = False
         self.body.pop(0)
         self.tail = self.body[0]
         self.head = self.body[-1]
+        return True
     
     def grow(self, field):
         last_x = self.head.x

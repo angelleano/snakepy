@@ -44,7 +44,9 @@ while running:
         field.food.food = False
         field.gen_food()
     else:
-        snake.move_forward(field)
+        if not snake.move_forward(field):
+            print("Game Over")
+            running = False
     
     draw(screen)
-    pygame.time.delay(250)
+    pygame.time.delay(150)
